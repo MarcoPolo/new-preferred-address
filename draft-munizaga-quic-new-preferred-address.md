@@ -121,6 +121,7 @@ The NEW_PREFERRED_ADDRESS is defined as follows:
 
 ~~~
 NEW_PREFERRED_ADDRESS Frame {
+  Type (i) = 0x1d5845e2,
   IPv4 Address (32),
   IPv4 Port (16),
   IPv6 Address (128),
