@@ -1213,10 +1213,12 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
       </h2>
 <p id="section-4-1">new_preferred_address (0xff0969d85c):<a href="#section-4-1" class="pilcrow">¶</a></p>
 <p id="section-4-2">Clients advertise their support of this extension by sending the
-new_preffered_address (0xff0969d85c) transport parameter <span><a href="https://rfc-editor.org/rfc/rfc9000#section-7.4" class="relref">Section 7.4</a> of [<a href="#QUIC-TRANSPORT" class="cite xref">QUIC-TRANSPORT</a>]</span>.<a href="#section-4-2" class="pilcrow">¶</a></p>
-<p id="section-4-3">Servers do not need to send this transport parameter. Receiving this transport
-parameter signals to the server that the client understands the New Preferred
-Address frame.<a href="#section-4-3" class="pilcrow">¶</a></p>
+new_preffered_address (0xff0969d85c) transport parameter <span><a href="https://rfc-editor.org/rfc/rfc9000#section-7.4" class="relref">Section 7.4</a> of [<a href="#QUIC-TRANSPORT" class="cite xref">QUIC-TRANSPORT</a>]</span>. Sending this transport parameter signals to the server that
+the client understands the NEW_PREFERRED_ADDRESS frame.<a href="#section-4-2" class="pilcrow">¶</a></p>
+<p id="section-4-3">Servers <span class="bcp14">MUST NOT</span> send this transport parameter. A client that supports this
+extension and receives this transport parameter <span class="bcp14">MUST</span> abort the connection with a
+TRANSPORT_PARAMETER_ERROR.<a href="#section-4-3" class="pilcrow">¶</a></p>
+<p id="section-4-4">Endpoints <span class="bcp14">MUST NOT</span> remember the value of this extension for 0-RTT.<a href="#section-4-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="new-preferred-address-frame">
@@ -1238,12 +1240,11 @@ NEW_PREFERRED_ADDRESS Frame {
   IPv4 Port (16),
   IPv6 Address (128),
   IPv6 Port (16),
-  Connection ID Length (8),
-  Connection ID (..),
-  Stateless Reset Token (128),
 }
 </pre><a href="#section-5-3" class="pilcrow">¶</a>
 </div>
+<p id="section-5-4">NEW_PREFERRED_ADDRESS frames are ack-eliciting, and <span class="bcp14">MUST</span> only be sent in the
+application data packet number space.<a href="#section-5-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="security-considerations">
