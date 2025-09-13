@@ -102,11 +102,12 @@ new_preferred_address (0xff0969d85c):
 
 Clients advertise their support of this extension by sending the
 new_preffered_address (0xff0969d85c) transport parameter {{Section 7.4 of
-QUIC-TRANSPORT}}.
+QUIC-TRANSPORT}}. Sending this transport parameter signals to the server that
+the client understands the NEW_PREFERRED_ADDRESS frame.
 
-Servers do not need to send this transport parameter. Receiving this transport
-parameter signals to the server that the client understands the New Preferred
-Address frame.
+Servers MUST NOT send this transport parameter. A client that supports this
+extension and receives this transport parameter MUST abort the connection with a
+TRANSPORT_PARAMETER_ERROR.
 
 # New Preferred Address Frame
 
