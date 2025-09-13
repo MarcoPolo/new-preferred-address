@@ -104,8 +104,6 @@ Table of Contents
    the New Preferred Address frame.
 
    Endpoints MUST NOT remember the value of this extension for 0-RTT.
-   This means that the NEW_PREFERRED_ADDRESS frame cannot be used in
-   0-RTT packets.
 
 5.  New Preferred Address Frame
 
