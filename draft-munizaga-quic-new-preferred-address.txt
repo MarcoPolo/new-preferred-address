@@ -4,8 +4,8 @@
 
 QUIC                                                         M. Munizaga
 Internet-Draft                                       Ethereum Foundation
-Intended status: Standards Track                       12 September 2025
-Expires: 16 March 2026
+Intended status: Standards Track                       13 September 2025
+Expires: 17 March 2026
 
 
                    QUIC New Server Preferred Address
@@ -31,7 +31,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 16 March 2026.
+   This Internet-Draft will expire on 17 March 2026.
 
 Copyright Notice
 
@@ -116,6 +116,7 @@ Table of Contents
    The NEW_PREFERRED_ADDRESS is defined as follows:
 
    NEW_PREFERRED_ADDRESS Frame {
+     Type (i) = 0x1d5845e2,
      IPv4 Address (32),
      IPv4 Port (16),
      IPv6 Address (128),
