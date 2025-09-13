@@ -1,0 +1,168 @@
+
+
+
+
+QUIC                                                         M. Munizaga
+Internet-Draft                                       Ethereum Foundation
+Intended status: Standards Track                       13 September 2025
+Expires: 17 March 2026
+
+
+                   QUIC New Server Preferred Address
+            draft-munizaga-quic-new-preferred-address-latest
+
+Abstract
+
+   This document specifies an extension to QUIC to allow a server to
+   request a migration to a new preferred address.
+
+Status of This Memo
+
+   This Internet-Draft is submitted in full conformance with the
+   provisions of BCP 78 and BCP 79.
+
+   Internet-Drafts are working documents of the Internet Engineering
+   Task Force (IETF).  Note that other groups may also distribute
+   working documents as Internet-Drafts.  The list of current Internet-
+   Drafts is at https://datatracker.ietf.org/drafts/current/.
+
+   Internet-Drafts are draft documents valid for a maximum of six months
+   and may be updated, replaced, or obsoleted by other documents at any
+   time.  It is inappropriate to use Internet-Drafts as reference
+   material or to cite them other than as "work in progress."
+
+   This Internet-Draft will expire on 17 March 2026.
+
+Copyright Notice
+
+   Copyright (c) 2025 IETF Trust and the persons identified as the
+   document authors.  All rights reserved.
+
+   This document is subject to BCP 78 and the IETF Trust's Legal
+   Provisions Relating to IETF Documents (https://trustee.ietf.org/
+   license-info) in effect on the date of publication of this document.
+   Please review these documents carefully, as they describe your rights
+   and restrictions with respect to this document.  Code Components
+   extracted from this document must include Revised BSD License text as
+   described in Section 4.e of the Trust Legal Provisions and are
+   provided without warranty as described in the Revised BSD License.
+
+Table of Contents
+
+   1.  Introduction
+   2.  Conventions and Definitions
+   3.  Motivation
+   4.  Negotiating Extension Use
+   5.  New Preferred Address Frame
+   6.  Security Considerations
+   7.  IANA Considerations
+   8.  Normative References
+   Acknowledgments
+   TODOs
+   Author's Address
+
+1.  Introduction
+
+   The QUIC transport protocol allows a client to migrate connections at
+   any time to any new address (Section 9 of [QUIC-TRANSPORT]).  This
+   allows the connection to survive changes to the client's address.
+   QUIC also allows a server to migrate to a different address, but only
+   a single time, and only to an address specified at the start of a
+   connection via the Server's Preferred Address (Section 9.6 of
+   [QUIC-TRANSPORT]).  For some applications, including those where the
+   server and client are peers, limiting the server to only a single
+   migration at the beginning is too limiting.  This document specifies
+   an extension to QUIC to allow a server to request a migration to a
+   new preferred address.
+
+   This document defines a new transport parameter that indicates
+   support of this extension and specifies a new frame type to inform
+   the client of the server's new preferred address.
+
+2.  Conventions and Definitions
+
+   The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT",
+   "SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED", "MAY", and
+   "OPTIONAL" in this document are to be interpreted as described in
+   BCP 14 [RFC2119] [RFC8174] when, and only when, they appear in all
+   capitals, as shown here.
+
+3.  Motivation
+
+   TODO
+
+4.  Negotiating Extension Use
+
+   new_preferred_address (0xff0969d85c):
+
+   Clients advertise their support of this extension by sending the
+   new_preffered_address (0xff0969d85c) transport parameter Section 7.4
+   of [QUIC-TRANSPORT].
+
+   Servers do not need to send this transport parameter.  Receiving this
+   transport parameter signals to the server that the client understands
+   the New Preferred Address frame.
+
+5.  New Preferred Address Frame
+
+   A server can use an NEW_PREFERRED_ADDRESS frame to request the client
+   to migrate the connection to the provided server address.  Upon
+   receiving an NEW_PREFERRED_ADDRESS, the client SHOULD initiate
+   migration.  If the client does migrate it MUST adhere to the client
+   behavior defined in Section 9.6 of [QUIC-TRANSPORT], with the
+   modification of allowing a migration to a new server address mid-
+   connection.
+
+   The NEW_PREFERRED_ADDRESS is defined as follows:
+
+   NEW_PREFERRED_ADDRESS Frame {
+     IPv4 Address (32),
+     IPv4 Port (16),
+     IPv6 Address (128),
+     IPv6 Port (16),
+     Connection ID Length (8),
+     Connection ID (..),
+     Stateless Reset Token (128),
+   }
+
+   NEW_PREFERRED_ADDRESS frames are ack-eliciting, and MUST only be sent
+   in the application data packet number space.
+
+6.  Security Considerations
+
+   TODO Security
+
+7.  IANA Considerations
+
+   This document defines a new
+
+8.  Normative References
+
+   [QUIC-TRANSPORT]
+              Iyengar, J., Ed. and M. Thomson, Ed., "QUIC: A UDP-Based
+              Multiplexed and Secure Transport", RFC 9000,
+              DOI 10.17487/RFC9000, May 2021,
+              <https://www.rfc-editor.org/rfc/rfc9000>.
+
+   [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
+              Requirement Levels", BCP 14, RFC 2119,
+              DOI 10.17487/RFC2119, March 1997,
+              <https://www.rfc-editor.org/rfc/rfc2119>.
+
+   [RFC8174]  Leiba, B., "Ambiguity of Uppercase vs Lowercase in RFC
+              2119 Key Words", BCP 14, RFC 8174, DOI 10.17487/RFC8174,
+              May 2017, <https://www.rfc-editor.org/rfc/rfc8174>.
+
+Acknowledgments
+
+   TODO acknowledge.
+
+TODOs
+
+   *  Rename draft to "New Server Preferred Address"
+
+Author's Address
+
+   Marco Munizaga
+   Ethereum Foundation
+   Email: marco@marcopolo.io
