@@ -102,11 +102,14 @@ new_preferred_address (0xff0969d85c):
 
 Clients advertise their support of this extension by sending the
 new_preffered_address (0xff0969d85c) transport parameter {{Section 7.4 of
-QUIC-TRANSPORT}}.
+QUIC-TRANSPORT}}. Sending this transport parameter signals to the server that
+the client understands the NEW_PREFERRED_ADDRESS frame.
 
-Servers do not need to send this transport parameter. Receiving this transport
-parameter signals to the server that the client understands the New Preferred
-Address frame.
+Servers MUST NOT send this transport parameter. A client that supports this
+extension and receives this transport parameter MUST abort the connection with a
+TRANSPORT_PARAMETER_ERROR.
+
+Endpoints MUST NOT remember the value of this extension for 0-RTT.
 
 # New Preferred Address Frame
 
@@ -121,16 +124,16 @@ The NEW_PREFERRED_ADDRESS is defined as follows:
 
 ~~~
 NEW_PREFERRED_ADDRESS Frame {
+  Type (i) = 0x1d5845e2,
   IPv4 Address (32),
   IPv4 Port (16),
   IPv6 Address (128),
   IPv6 Port (16),
-  Connection ID Length (8),
-  Connection ID (..),
-  Stateless Reset Token (128),
 }
 ~~~
 
+NEW_PREFERRED_ADDRESS frames are ack-eliciting, and MUST only be sent in the
+application data packet number space.
 
 # Security Considerations
 
