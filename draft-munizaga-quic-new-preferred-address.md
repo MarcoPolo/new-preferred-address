@@ -108,8 +108,7 @@ Servers do not need to send this transport parameter. Receiving this transport
 parameter signals to the server that the client understands the New Preferred
 Address frame.
 
-Endpoints MUST NOT remember the value of this extension for 0-RTT. This means
-that the NEW_PREFERRED_ADDRESS frame cannot be used in 0-RTT packets.
+Endpoints MUST NOT remember the value of this extension for 0-RTT.
 
 # New Preferred Address Frame
 
