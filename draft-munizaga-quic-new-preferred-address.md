@@ -125,9 +125,6 @@ NEW_PREFERRED_ADDRESS Frame {
   IPv4 Port (16),
   IPv6 Address (128),
   IPv6 Port (16),
-  Connection ID Length (8),
-  Connection ID (..),
-  Stateless Reset Token (128),
 }
 ~~~
 
