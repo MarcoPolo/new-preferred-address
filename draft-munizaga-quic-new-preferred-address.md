@@ -131,6 +131,8 @@ NEW_PREFERRED_ADDRESS Frame {
 }
 ~~~
 
+NEW_PREFERRED_ADDRESS frames are ack-eliciting, and MUST only be sent in the
+application data packet number space.
 
 # Security Considerations
 
