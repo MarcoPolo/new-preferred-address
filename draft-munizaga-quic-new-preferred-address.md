@@ -94,7 +94,17 @@ new preferred address.
 
 # Motivation
 
-TODO
+In peer to peer networks, the role of server and client is arbitrary. A endpoint
+may serve as a client in one connection and a server in another. Limiting
+connection migration to clients limits the flexibility of endpoints in this
+network. A peer in this network would like to migrate all of its connections,
+not just the ones it happens to be a client in.
+
+While it is not the primary goal, this extension may also assist in NAT
+traversal by migrating to a dynamically chosen server address. A server could
+have a client connect over a relay, and later migrate to a direct connection
+applying NAT traversal techniques. The specific NAT traversal techniques are out
+of scope of this document.
 
 # Negotiating Extension Use
 
