@@ -144,6 +144,12 @@ NEW_PREFERRED_ADDRESS Frame {
 NEW_PREFERRED_ADDRESS frames are ack-eliciting, and MUST only be sent in the
 application data packet number space.
 
+The server SHOULD ensure that its peer has a sufficient number of available and
+unused connection IDs, as the client will be unable to migrate without an unused
+connection ID. The server MAY bundle a NEW_CONNECTION_ID frame with the
+NEW_PREFERRED_ADDRESS. Likewise, the client should ensure the same to allow the
+server to probe new paths.
+
 # Changes to Server's Preferred Address from RFC 9000 {#changes}
 
 If a client advertises support for this extension it should modify its
