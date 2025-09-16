@@ -157,7 +157,10 @@ probe viable paths before sending an NEW_PREFERRED_ADDRESS frame.
 
 # Security Considerations
 
-TODO Security
+## Request Forgery Attacks
+
+The same considerations from {{Section 21.5 of QUIC-TRANSPORT}} apply here as
+well.
 
 # IANA Considerations
 
@@ -173,4 +176,14 @@ TODO acknowledge.
 # TODOs
 {:numbered="false"}
 
-- Rename draft to "New Server Preferred Address"
+# Questions
+{:numbered="false"}
+
+- Any new security considerations from allowing a server to send path challenge
+  frames?
+
+- Any new security conserations from allowing a dynamically chosen preferred
+  address?
+
+- Any new security conserations from allowing a deferred chosen preferred
+  address?
