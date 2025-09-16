@@ -111,7 +111,7 @@ of scope of this document.
 new_preferred_address (0xff0969d85c):
 
 Clients advertise their support of this extension by sending the
-new_preffered_address (0xff0969d85c) transport parameter {{Section 7.4 of
+new_preferred_address (0xff0969d85c) transport parameter {{Section 7.4 of
 QUIC-TRANSPORT}}. Sending this transport parameter signals to the server that
 the client understands the NEW_PREFERRED_ADDRESS frame.
 
