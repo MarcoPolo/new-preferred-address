@@ -127,8 +127,7 @@ A server can use an NEW_PREFERRED_ADDRESS frame to request the client to
 migrate the connection to the provided server address. Upon receiving an
 NEW_PREFERRED_ADDRESS, the client SHOULD initiate migration. If the
 client does migrate it MUST adhere to the client behavior defined in {{Section
-9.6 of QUIC-TRANSPORT}}, with the modification of allowing a migration to a new
-server address mid-connection.
+9.6 of QUIC-TRANSPORT}}, with exceptions specified in {{changes}}.
 
 The NEW_PREFERRED_ADDRESS is defined as follows:
 
@@ -144,6 +143,17 @@ NEW_PREFERRED_ADDRESS Frame {
 
 NEW_PREFERRED_ADDRESS frames are ack-eliciting, and MUST only be sent in the
 application data packet number space.
+
+# Changes to Server's Preferred Address from RFC 9000 {#changes}
+
+If a client advertises support for this extension it should modify its
+Server's Preferred Address behavior as follows.
+
+Clients MUST support migrating to a new server address mid connection.
+
+Clients SHOULD respond to PATH_CHALLENGE frames from the server from new paths,
+even if the client has not initiated a migration. This allows the server to
+probe viable paths before sending an NEW_PREFERRED_ADDRESS frame.
 
 # Security Considerations
 
