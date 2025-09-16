@@ -4,8 +4,8 @@
 
 QUIC                                                         M. Munizaga
 Internet-Draft                                       Ethereum Foundation
-Intended status: Standards Track                       13 September 2025
-Expires: 17 March 2026
+Intended status: Standards Track                       16 September 2025
+Expires: 20 March 2026
 
 
                    QUIC New Server Preferred Address
@@ -31,7 +31,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 17 March 2026.
+   This Internet-Draft will expire on 20 March 2026.
 
 Copyright Notice
 
@@ -54,11 +54,14 @@ Table of Contents
    3.  Motivation
    4.  Negotiating Extension Use
    5.  New Preferred Address Frame
-   6.  Security Considerations
-   7.  IANA Considerations
-   8.  Normative References
+   6.  Changes to Server's Preferred Address from RFC 9000
+   7.  Security Considerations
+     7.1.  Request Forgery Attacks
+   8.  IANA Considerations
+   9.  Normative References
    Acknowledgments
    TODOs
+   Questions
    Author's Address
 
 1.  Introduction
@@ -89,14 +92,25 @@ Table of Contents
 
 3.  Motivation
 
-   TODO
+   In peer to peer networks, the role of server and client is arbitrary.
+   A endpoint may serve as a client in one connection and a server in
+   another.  Limiting connection migration to clients limits the
+   flexibility of endpoints in this network.  A peer in this network
+   would like to migrate all of its connections, not just the ones it
+   happens to be a client in.
+
+   While it is not the primary goal, this extension may also assist in
+   NAT traversal by migrating to a dynamically chosen server address.  A
+   server could have a client connect over a relay, and later migrate to
+   a direct connection applying NAT traversal techniques.  The specific
+   NAT traversal techniques are out of scope of this document.
 
 4.  Negotiating Extension Use
 
    new_preferred_address (0xff0969d85c):
 
    Clients advertise their support of this extension by sending the
-   new_preffered_address (0xff0969d85c) transport parameter Section 7.4
+   new_preferred_address (0xff0969d85c) transport parameter Section 7.4
    of [QUIC-TRANSPORT].  Sending this transport parameter signals to the
    server that the client understands the NEW_PREFERRED_ADDRESS frame.
 
@@ -112,9 +126,8 @@ Table of Contents
    to migrate the connection to the provided server address.  Upon
    receiving an NEW_PREFERRED_ADDRESS, the client SHOULD initiate
    migration.  If the client does migrate it MUST adhere to the client
-   behavior defined in Section 9.6 of [QUIC-TRANSPORT], with the
-   modification of allowing a migration to a new server address mid-
-   connection.
+   behavior defined in Section 9.6 of [QUIC-TRANSPORT], with exceptions
+   specified in Section 6.
 
    The NEW_PREFERRED_ADDRESS is defined as follows:
 
@@ -129,15 +142,38 @@ Table of Contents
    NEW_PREFERRED_ADDRESS frames are ack-eliciting, and MUST only be sent
    in the application data packet number space.
 
-6.  Security Considerations
+   The server SHOULD ensure that its peer has a sufficient number of
+   available and unused connection IDs, as the client will be unable to
+   migrate without an unused connection ID.  The server MAY bundle a
+   NEW_CONNECTION_ID frame with the NEW_PREFERRED_ADDRESS.  Likewise,
+   the client should ensure the same to allow the server to probe new
+   paths.
 
-   TODO Security
+6.  Changes to Server's Preferred Address from RFC 9000
 
-7.  IANA Considerations
+   If a client advertises support for this extension it should modify
+   its Server's Preferred Address behavior as follows.
+
+   Clients MUST support migrating to a new server address mid
+   connection.
+
+   Clients SHOULD respond to PATH_CHALLENGE frames from the server from
+   new paths, even if the client has not initiated a migration.  This
+   allows the server to probe viable paths before sending an
+   NEW_PREFERRED_ADDRESS frame.
+
+7.  Security Considerations
+
+7.1.  Request Forgery Attacks
+
+   The same considerations from Section 21.5 of [QUIC-TRANSPORT] apply
+   here as well.
+
+8.  IANA Considerations
 
    This document defines a new
 
-8.  Normative References
+9.  Normative References
 
    [QUIC-TRANSPORT]
               Iyengar, J., Ed. and M. Thomson, Ed., "QUIC: A UDP-Based
@@ -160,7 +196,16 @@ Acknowledgments
 
 TODOs
 
-   *  Rename draft to "New Server Preferred Address"
+Questions
+
+   *  Any new security considerations from allowing a server to send
+      path challenge frames?
+
+   *  Any new security conserations from allowing a dynamically chosen
+      preferred address?
+
+   *  Any new security conserations from allowing a deferred chosen
+      preferred address?
 
 Author's Address
 
