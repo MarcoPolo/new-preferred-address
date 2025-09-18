@@ -134,12 +134,33 @@ The NEW_PREFERRED_ADDRESS is defined as follows:
 ~~~
 NEW_PREFERRED_ADDRESS Frame {
   Type (i) = 0x1d5845e2,
+  Sequence Number (i),
   IPv4 Address (32),
   IPv4 Port (16),
   IPv6 Address (128),
   IPv6 Port (16),
 }
 ~~~
+
+Following the common frame format described in {{Section 12.4 of
+QUIC-TRANSPORT}}, ACK_FREQUENCY frames have a type of 0x1d5845e2, and contain
+the following fields:
+
+Sequence Number:
+
+: A variable-length integer representing the sequence number assigned to the
+  NEW_PREFERRED_ADDRESS frame by the sender so receivers ignore obsolete frames. A
+  sending endpoint MUST send monotonically increasing values in the Sequence
+  Number field to allow obsolete NEW_PREFERRED_ADDRESS frames to be ignored when
+  packets are processed out of order.
+
+IPv4 and IPv6 Address and Port:
+
+: Analogous to the preferred_address transport parameter, this frame contains an
+  address and port for both IPv4 and IPv6. The four-byte IPv4 Address field is
+  followed by the associated two-byte IPv4 Port field. This is followed by a
+  16-byte IPv6 Address field and two-byte IPv6 Port field. After address and
+  port pairs, a Connection ID Length field
 
 NEW_PREFERRED_ADDRESS frames are ack-eliciting, and MUST only be sent in the
 application data packet number space.
