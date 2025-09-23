@@ -4,8 +4,8 @@
 
 QUIC                                                         M. Munizaga
 Internet-Draft                                       Ethereum Foundation
-Intended status: Standards Track                       16 September 2025
-Expires: 20 March 2026
+Intended status: Standards Track                       23 September 2025
+Expires: 27 March 2026
 
 
                    QUIC New Server Preferred Address
@@ -31,7 +31,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 20 March 2026.
+   This Internet-Draft will expire on 27 March 2026.
 
 Copyright Notice
 
@@ -57,6 +57,7 @@ Table of Contents
    6.  Changes to Server's Preferred Address from RFC 9000
    7.  Security Considerations
      7.1.  Request Forgery Attacks
+     7.2.  DDoS - Thundering herd
    8.  IANA Considerations
    9.  Normative References
    Acknowledgments
@@ -124,7 +125,7 @@ Table of Contents
 
    A server can use an NEW_PREFERRED_ADDRESS frame to request the client
    to migrate the connection to the provided server address.  Upon
-   receiving an NEW_PREFERRED_ADDRESS, the client SHOULD initiate
+   receiving an NEW_PREFERRED_ADDRESS, the client MAY initiate
    migration.  If the client does migrate it MUST adhere to the client
    behavior defined in Section 9.6 of [QUIC-TRANSPORT], with exceptions
    specified in Section 6.
@@ -133,11 +134,30 @@ Table of Contents
 
    NEW_PREFERRED_ADDRESS Frame {
      Type (i) = 0x1d5845e2,
+     Sequence Number (i),
      IPv4 Address (32),
      IPv4 Port (16),
      IPv6 Address (128),
      IPv6 Port (16),
    }
+
+   Following the common frame format described in Section 12.4 of
+   [QUIC-TRANSPORT], ACK_FREQUENCY frames have a type of 0x1d5845e2, and
+   contain the following fields:
+
+   Sequence Number:  A variable-length integer representing the sequence
+      number assigned to the NEW_PREFERRED_ADDRESS frame by the sender
+      so receivers ignore obsolete frames.  A sending endpoint MUST send
+      monotonically increasing values in the Sequence Number field to
+      allow obsolete NEW_PREFERRED_ADDRESS frames to be ignored when
+      packets are processed out of order.
+
+   IPv4 and IPv6 Address and Port:  Analogous to the preferred_address
+      transport parameter, this frame contains an address and port for
+      both IPv4 and IPv6.  The four-byte IPv4 Address field is followed
+      by the associated two-byte IPv4 Port field.  This is followed by a
+      16-byte IPv6 Address field and two-byte IPv6 Port field.  After
+      address and port pairs, a Connection ID Length field
 
    NEW_PREFERRED_ADDRESS frames are ack-eliciting, and MUST only be sent
    in the application data packet number space.
@@ -169,9 +189,20 @@ Table of Contents
    The same considerations from Section 21.5 of [QUIC-TRANSPORT] apply
    here as well.
 
+7.2.  DDoS - Thundering herd
+
+   A server may wait until it has received a large number of clients,
+   and request a migration from all of them to a victim endpoint.  If
+   the clients all migrate at the same time, they may overload or
+   otherwise negatively impact the victim endpoint.
+
+   Clients MAY defer migration until after a PATH_CHALLENGE frame is
+   received from the server's new preferred address.  Clients may also
+   mitigate this by randomly delaying the migration.
+
 8.  IANA Considerations
 
-   This document defines a new
+   TODO
 
 9.  Normative References
 

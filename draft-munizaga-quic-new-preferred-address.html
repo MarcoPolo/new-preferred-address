@@ -10,12 +10,12 @@
        This document specifies an extension to QUIC to allow a server to request a
 migration to a new preferred address. 
     " name="description">
-<meta content="xml2rfc 3.30.1" name="generator">
+<meta content="xml2rfc 3.30.2" name="generator">
 <meta content="Connection Migration" name="keyword">
 <meta content="Server's Preferred Address" name="keyword">
 <meta content="draft-munizaga-quic-new-preferred-address-latest" name="ietf.draft">
 <!-- Generator version information:
-  xml2rfc 3.30.1
+  xml2rfc 3.30.2
     Python 3.12.11
     ConfigArgParse 1.7
     google-i18n-address 3.1.1
@@ -1050,7 +1050,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 </tr></thead>
 <tfoot><tr>
 <td class="left">Munizaga</td>
-<td class="center">Expires 20 March 2026</td>
+<td class="center">Expires 27 March 2026</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1063,12 +1063,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <dd class="internet-draft">draft-munizaga-quic-new-preferred-address-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2025-09-16" class="published">16 September 2025</time>
+<time datetime="2025-09-23" class="published">23 September 2025</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Standards Track</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2026-03-20">20 March 2026</time></dd>
+<dd class="expires"><time datetime="2026-03-27">27 March 2026</time></dd>
 <dt class="label-authors">Author:</dt>
 <dd class="authors">
 <div class="author">
@@ -1103,7 +1103,7 @@ migration to a new preferred address.<a href="#section-abstract-1" class="pilcro
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 20 March 2026.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 27 March 2026.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1155,6 +1155,9 @@ migration to a new preferred address.<a href="#section-abstract-1" class="pilcro
 <ul class="compact toc ulBare ulEmpty">
 <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.7.2.1">
                 <p id="section-toc.1-1.7.2.1.1"><a href="#section-7.1" class="auto internal xref">7.1</a>.  <a href="#name-request-forgery-attacks" class="internal xref">Request Forgery Attacks</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.7.2.2">
+                <p id="section-toc.1-1.7.2.2.1"><a href="#section-7.2" class="auto internal xref">7.2</a>.  <a href="#name-ddos-thundering-herd" class="internal xref">DDoS - Thundering herd</a></p>
 </li>
             </ul>
 </li>
@@ -1248,13 +1251,14 @@ TRANSPORT_PARAMETER_ERROR.<a href="#section-4-3" class="pilcrow">¶</a></p>
       </h2>
 <p id="section-5-1">A server can use an NEW_PREFERRED_ADDRESS frame to request the client to
 migrate the connection to the provided server address. Upon receiving an
-NEW_PREFERRED_ADDRESS, the client <span class="bcp14">SHOULD</span> initiate migration. If the
+NEW_PREFERRED_ADDRESS, the client <span class="bcp14">MAY</span> initiate migration. If the
 client does migrate it <span class="bcp14">MUST</span> adhere to the client behavior defined in <span><a href="https://rfc-editor.org/rfc/rfc9000#section-9.6" class="relref">Section 9.6</a> of [<a href="#QUIC-TRANSPORT" class="cite xref">QUIC-TRANSPORT</a>]</span>, with exceptions specified in <a href="#changes" class="auto internal xref">Section 6</a>.<a href="#section-5-1" class="pilcrow">¶</a></p>
 <p id="section-5-2">The NEW_PREFERRED_ADDRESS is defined as follows:<a href="#section-5-2" class="pilcrow">¶</a></p>
 <div class="alignLeft art-text artwork" id="section-5-3">
 <pre>
 NEW_PREFERRED_ADDRESS Frame {
   Type (i) = 0x1d5845e2,
+  Sequence Number (i),
   IPv4 Address (32),
   IPv4 Port (16),
   IPv6 Address (128),
@@ -1262,13 +1266,35 @@ NEW_PREFERRED_ADDRESS Frame {
 }
 </pre><a href="#section-5-3" class="pilcrow">¶</a>
 </div>
-<p id="section-5-4">NEW_PREFERRED_ADDRESS frames are ack-eliciting, and <span class="bcp14">MUST</span> only be sent in the
-application data packet number space.<a href="#section-5-4" class="pilcrow">¶</a></p>
-<p id="section-5-5">The server <span class="bcp14">SHOULD</span> ensure that its peer has a sufficient number of available and
+<p id="section-5-4">Following the common frame format described in <span><a href="https://rfc-editor.org/rfc/rfc9000#section-12.4" class="relref">Section 12.4</a> of [<a href="#QUIC-TRANSPORT" class="cite xref">QUIC-TRANSPORT</a>]</span>, ACK_FREQUENCY frames have a type of 0x1d5845e2, and contain
+the following fields:<a href="#section-5-4" class="pilcrow">¶</a></p>
+<span class="break"></span><dl class="dlParallel" id="section-5-5">
+        <dt id="section-5-5.1">Sequence Number:</dt>
+        <dd style="margin-left: 1.5em" id="section-5-5.2">
+          <p id="section-5-5.2.1">A variable-length integer representing the sequence number assigned to the
+NEW_PREFERRED_ADDRESS frame by the sender so receivers ignore obsolete frames. A
+sending endpoint <span class="bcp14">MUST</span> send monotonically increasing values in the Sequence
+Number field to allow obsolete NEW_PREFERRED_ADDRESS frames to be ignored when
+packets are processed out of order.<a href="#section-5-5.2.1" class="pilcrow">¶</a></p>
+</dd>
+        <dd class="break"></dd>
+<dt id="section-5-5.3">IPv4 and IPv6 Address and Port:</dt>
+        <dd style="margin-left: 1.5em" id="section-5-5.4">
+          <p id="section-5-5.4.1">Analogous to the preferred_address transport parameter, this frame contains an
+address and port for both IPv4 and IPv6. The four-byte IPv4 Address field is
+followed by the associated two-byte IPv4 Port field. This is followed by a
+16-byte IPv6 Address field and two-byte IPv6 Port field. After address and
+port pairs, a Connection ID Length field<a href="#section-5-5.4.1" class="pilcrow">¶</a></p>
+</dd>
+      <dd class="break"></dd>
+</dl>
+<p id="section-5-6">NEW_PREFERRED_ADDRESS frames are ack-eliciting, and <span class="bcp14">MUST</span> only be sent in the
+application data packet number space.<a href="#section-5-6" class="pilcrow">¶</a></p>
+<p id="section-5-7">The server <span class="bcp14">SHOULD</span> ensure that its peer has a sufficient number of available and
 unused connection IDs, as the client will be unable to migrate without an unused
 connection ID. The server <span class="bcp14">MAY</span> bundle a NEW_CONNECTION_ID frame with the
 NEW_PREFERRED_ADDRESS. Likewise, the client should ensure the same to allow the
-server to probe new paths.<a href="#section-5-5" class="pilcrow">¶</a></p>
+server to probe new paths.<a href="#section-5-7" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="changes">
@@ -1298,6 +1324,20 @@ probe viable paths before sending an NEW_PREFERRED_ADDRESS frame.<a href="#secti
 well.<a href="#section-7.1-1" class="pilcrow">¶</a></p>
 </section>
 </div>
+<div id="ddos-thundering-herd">
+<section id="section-7.2">
+        <h3 id="name-ddos-thundering-herd">
+<a href="#section-7.2" class="section-number selfRef">7.2. </a><a href="#name-ddos-thundering-herd" class="section-name selfRef">DDoS - Thundering herd</a>
+        </h3>
+<p id="section-7.2-1">A server may wait until it has received a large number of clients, and request a
+migration from all of them to a victim endpoint. If the clients all migrate at
+the same time, they may overload or otherwise negatively impact the victim
+endpoint.<a href="#section-7.2-1" class="pilcrow">¶</a></p>
+<p id="section-7.2-2">Clients <span class="bcp14">MAY</span> defer migration until after a PATH_CHALLENGE frame is received from
+the server's new preferred address. Clients may also mitigate this by randomly
+delaying the migration.<a href="#section-7.2-2" class="pilcrow">¶</a></p>
+</section>
+</div>
 </section>
 </div>
 <div id="iana-considerations">
@@ -1305,7 +1345,7 @@ well.<a href="#section-7.1-1" class="pilcrow">¶</a></p>
       <h2 id="name-iana-considerations">
 <a href="#section-8" class="section-number selfRef">8. </a><a href="#name-iana-considerations" class="section-name selfRef">IANA Considerations</a>
       </h2>
-<p id="section-8-1">This document defines a new<a href="#section-8-1" class="pilcrow">¶</a></p>
+<p id="section-8-1">TODO<a href="#section-8-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="sec-normative-references">
