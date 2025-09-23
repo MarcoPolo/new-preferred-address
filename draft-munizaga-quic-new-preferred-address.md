@@ -189,6 +189,17 @@ probe viable paths before sending an NEW_PREFERRED_ADDRESS frame.
 The same considerations from {{Section 21.5 of QUIC-TRANSPORT}} apply here as
 well.
 
+## DDoS - Thundering herd
+
+A server may wait until it has received a large number of clients, and request a
+migration from all of them to a victim endpoint. If the clients all migrate at
+the same time, they may overload or otherwise negatively impact the victim
+endpoint.
+
+Clients MAY defer migration until after a PATH_CHALLENGE frame is received from
+the server's new preferred address. Clients may also mitigate this by randomly
+delaying the migration.
+
 # IANA Considerations
 
 TODO
