@@ -125,7 +125,7 @@ Endpoints MUST NOT remember the value of this extension for 0-RTT.
 
 A server can use an NEW_PREFERRED_ADDRESS frame to request the client to
 migrate the connection to the provided server address. Upon receiving an
-NEW_PREFERRED_ADDRESS, the client SHOULD initiate migration. If the
+NEW_PREFERRED_ADDRESS, the client MAY initiate migration. If the
 client does migrate it MUST adhere to the client behavior defined in {{Section
 9.6 of QUIC-TRANSPORT}}, with exceptions specified in {{changes}}.
 
