@@ -94,26 +94,26 @@ new preferred address.
 
 # Motivation
 
-In peer to peer networks, the role of server and client is arbitrary. A endpoint
-may serve as a client in one connection and a server in another. Limiting
-connection migration to clients limits the flexibility of endpoints in this
-network. A peer in this network would like to migrate all of its connections,
-not just the ones it happens to be a client in.
+In peer to peer networks, the role of server and client is arbitrary. An
+endpoint may serve as a client in one connection and a server in another.
+Limiting connection migration to clients limits the flexibility of endpoints in
+this network. A peer in this network would like to migrate all of its
+connections, not just the ones it happens to be a client in.
 
 While it is not the primary goal, this extension may also assist in NAT
 traversal by migrating to a dynamically chosen server address. A server could
 have a client connect over a relay, and later migrate to a direct connection
-applying NAT traversal techniques. The specific NAT traversal techniques are out
-of scope of this document.
+after applying NAT traversal techniques. The specific NAT traversal techniques
+are out of scope of this document.
 
 # Negotiating Extension Use
 
 new_preferred_address (0xff0969d85c):
 
 Clients advertise their support of this extension by sending the
-new_preferred_address (0xff0969d85c) transport parameter {{Section 7.4 of
-QUIC-TRANSPORT}}. Sending this transport parameter signals to the server that
-the client understands the NEW_PREFERRED_ADDRESS frame.
+new_preferred_address (0xff0969d85c) transport parameter ({{Section 7.4 of
+QUIC-TRANSPORT}}) with an empty value. Sending this transport parameter signals
+to the server that the client understands the NEW_PREFERRED_ADDRESS frame.
 
 Servers MUST NOT send this transport parameter. A client that supports this
 extension and receives this transport parameter MUST abort the connection with a
@@ -143,24 +143,23 @@ NEW_PREFERRED_ADDRESS Frame {
 ~~~
 
 Following the common frame format described in {{Section 12.4 of
-QUIC-TRANSPORT}}, ACK_FREQUENCY frames have a type of 0x1d5845e2, and contain
-the following fields:
+QUIC-TRANSPORT}}, NEW_PREFERRED_ADDRESS frames have a type of 0x1d5845e2, and
+contain the following fields:
 
 Sequence Number:
 
 : A variable-length integer representing the sequence number assigned to the
-  NEW_PREFERRED_ADDRESS frame by the sender so receivers ignore obsolete frames. A
-  sending endpoint MUST send monotonically increasing values in the Sequence
-  Number field to allow obsolete NEW_PREFERRED_ADDRESS frames to be ignored when
-  packets are processed out of order.
+  NEW_PREFERRED_ADDRESS frame by the sender so receivers can ignore obsolete
+  frames. A sending endpoint MUST send monotonically increasing values in the
+  Sequence Number field to allow obsolete NEW_PREFERRED_ADDRESS frames to be
+  ignored when packets are processed out of order.
 
 IPv4 and IPv6 Address and Port:
 
 : Analogous to the preferred_address transport parameter, this frame contains an
   address and port for both IPv4 and IPv6. The four-byte IPv4 Address field is
   followed by the associated two-byte IPv4 Port field. This is followed by a
-  16-byte IPv6 Address field and two-byte IPv6 Port field. After address and
-  port pairs, a Connection ID Length field
+  16-byte IPv6 Address field and two-byte IPv6 Port field.
 
 NEW_PREFERRED_ADDRESS frames are ack-eliciting, and MUST only be sent in the
 application data packet number space.
@@ -174,7 +173,7 @@ server to probe new paths.
 # Changes to Server's Preferred Address from RFC 9000 {#changes}
 
 If a client advertises support for this extension it should modify its
-Server's Preferred Address behavior as follows.
+migration behavior to a server's preferred address as follows.
 
 Clients MUST support migrating to a new server address mid connection.
 
@@ -191,10 +190,10 @@ well.
 
 ## DDoS - Thundering herd
 
-A server may wait until it has received a large number of clients, and request a
-migration from all of them to a victim endpoint. If the clients all migrate at
-the same time, they may overload or otherwise negatively impact the victim
-endpoint.
+A malicious server could wait until it has received a large number of clients,
+and request a migration from all of them at the same time to a victim endpoint.
+If the clients all migrate at the same time, they may overload or otherwise
+negatively impact the victim endpoint.
 
 Clients MAY defer migration until after a PATH_CHALLENGE frame is received from
 the server's new preferred address. Clients may also mitigate this by randomly
