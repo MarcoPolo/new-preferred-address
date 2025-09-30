@@ -201,7 +201,53 @@ delaying the migration.
 
 # IANA Considerations
 
-TODO
+## QUIC Transport Parameter
+
+This document registers the new_preferred_address transport parameter in the "QUIC
+Transport Parameters" registry established in {{Section 22.3 of
+QUIC-TRANSPORT}}. The following fields are registered:
+
+Value:
+: 0xff0969d85c
+
+Parameter Name:
+: new_preferred_address
+
+Status:
+: Provisional
+
+Specification:
+: This document
+
+Change Controller:
+: IETF (iesg@ietf.org)
+
+Contact:
+: Marco Munizaga (marco@marcopolo.io)
+
+## QUIC Frame Types
+
+This document registers one new value in the "QUIC Frame Types" registry
+established in {{Section 22.4 of QUIC-TRANSPORT}}. The following fields are
+registered:
+
+Value:
+: 0x1d5845e2
+
+Frame Type Name:
+: NEW_PREFERRED_ADDRESS
+
+Status:
+: Provisional
+
+Specification:
+: This document
+
+Change Controller:
+: IETF (iesg@ietf.org)
+
+Contact:
+: Marco Munizaga (marco@marcopolo.io)
 
 --- back
 
