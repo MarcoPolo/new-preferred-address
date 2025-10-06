@@ -4,8 +4,9 @@
 
 QUIC                                                         M. Munizaga
 Internet-Draft                                       Ethereum Foundation
-Intended status: Standards Track                       30 September 2025
-Expires: 3 April 2026
+Intended status: Standards Track                              M. Seemann
+Expires: 9 April 2026                                          Smallstep
+                                                          6 October 2025
 
 
                    QUIC New Server Preferred Address
@@ -31,7 +32,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 3 April 2026.
+   This Internet-Draft will expire on 9 April 2026.
 
 Copyright Notice
 
@@ -65,7 +66,7 @@ Table of Contents
    Acknowledgments
    TODOs
    Questions
-   Author's Address
+   Authors' Addresses
 
 1.  Introduction
 
@@ -275,8 +276,13 @@ Questions
    *  Any new security conserations from allowing a deferred chosen
       preferred address?
 
-Author's Address
+Authors' Addresses
 
    Marco Munizaga
    Ethereum Foundation
    Email: marco@marcopolo.io
+
+
+   Marten Seemann
+   Smallstep
+   Email: martenseemann@gmail.com
