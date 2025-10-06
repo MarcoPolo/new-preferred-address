@@ -39,6 +39,10 @@ author:
     fullname: Marco Munizaga
     organization: Ethereum Foundation
     email: marco@marcopolo.io
+ -
+    fullname: Marten Seemann
+    organization: Smallstep
+    email: martenseemann@gmail.com
 
 normative:
 
