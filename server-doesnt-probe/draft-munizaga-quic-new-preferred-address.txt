@@ -184,7 +184,7 @@ Table of Contents
    a victim endpoint.  If the clients all migrate at the same time, they
    may overload or otherwise negatively impact the victim endpoint.
 
-   Clients may also mitigate this by randomly delaying the migration.
+   Clients may mitigate this by randomly delaying the migration.
 
 7.  IANA Considerations
 
