@@ -1,18 +1,23 @@
 ---
 title: "QUIC New Server Preferred Address"
 category: std
-
 docname: draft-munizaga-quic-new-preferred-address-latest
-submissiontype: IETF
-number:
-date:
-consensus: true
-v: 3
-area: Transport
-workgroup: QUIC
-keyword:
- - Connection Migration
- - Server's Preferred Address
+
+ipr: trust200902
+area: "Transport"
+workgroup: "QUIC"
+keyword: Internet-Draft
+venue:
+  group: "QUIC"
+  type: "Working Group"
+  mail: "quic@ietf.org"
+  arch: "https://mailarchive.ietf.org/arch/browse/quic/"
+  github: "MarcoPolo/new-preferred-address"
+  latest: "https://marcopolo.github.io/new-preferred-address/draft-munizaga-quic-new-preferred-address.html"
+
+stand_alone: yes
+smart_quotes: no
+pi: [toc, sortrefs, symrefs]
 
 author:
  -
@@ -109,7 +114,7 @@ A server can use an NEW_PREFERRED_ADDRESS frame to request the client to
 migrate the connection to the provided server address. Upon receiving an
 NEW_PREFERRED_ADDRESS, the client MAY initiate migration. If the
 client does migrate it MUST adhere to the client behavior defined in {{Section
-9.6 of QUIC-TRANSPORT}}, with exceptions specified in {{changes}}.
+9.6 of QUIC-TRANSPORT}}.
 
 The NEW_PREFERRED_ADDRESS is defined as follows:
 
@@ -152,16 +157,6 @@ connection ID. The server MAY bundle a NEW_CONNECTION_ID frame with the
 NEW_PREFERRED_ADDRESS. Likewise, the client should ensure the same to allow the
 server to probe new paths.
 
-# Changes to Server's Preferred Address from RFC 9000 {#changes}
-
-If a client advertises support for this extension it should modify its
-migration behavior to a server's preferred address as follows.
-
-Clients MUST support migrating to a new server address mid connection.
-
-Clients SHOULD respond to PATH_CHALLENGE frames from the server from new paths,
-even if the client has not initiated a migration. This allows the server to
-probe viable paths before sending an NEW_PREFERRED_ADDRESS frame.
 
 # Security Considerations
 
@@ -177,9 +172,7 @@ and request a migration from all of them at the same time to a victim endpoint.
 If the clients all migrate at the same time, they may overload or otherwise
 negatively impact the victim endpoint.
 
-Clients MAY defer migration until after a PATH_CHALLENGE frame is received from
-the server's new preferred address. Clients may also mitigate this by randomly
-delaying the migration.
+Clients may mitigate this by randomly delaying the migration.
 
 # IANA Considerations
 
@@ -243,9 +236,6 @@ TODO acknowledge.
 
 # Questions
 {:numbered="false"}
-
-- Any new security considerations from allowing a server to send path challenge
-  frames?
 
 - Any new security conserations from allowing a dynamically chosen preferred
   address?
