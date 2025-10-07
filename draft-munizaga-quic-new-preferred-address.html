@@ -12,8 +12,7 @@
 migration to a new preferred address. 
     " name="description">
 <meta content="xml2rfc 3.30.2" name="generator">
-<meta content="Connection Migration" name="keyword">
-<meta content="Server's Preferred Address" name="keyword">
+<meta content="Internet-Draft" name="keyword">
 <meta content="draft-munizaga-quic-new-preferred-address-latest" name="ietf.draft">
 <!-- Generator version information:
   xml2rfc 3.30.2
@@ -1051,7 +1050,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 </tr></thead>
 <tfoot><tr>
 <td class="left">Munizaga &amp; Seemann</td>
-<td class="center">Expires 9 April 2026</td>
+<td class="center">Expires 10 April 2026</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1064,12 +1063,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <dd class="internet-draft">draft-munizaga-quic-new-preferred-address-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2025-10-06" class="published">6 October 2025</time>
+<time datetime="2025-10-07" class="published">7 October 2025</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Standards Track</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2026-04-09">9 April 2026</time></dd>
+<dd class="expires"><time datetime="2026-04-10">10 April 2026</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1088,6 +1087,22 @@ svg :is([fill="white"], [fill^="#fff"]) {
       <h2 id="abstract"><a href="#abstract" class="selfRef">Abstract</a></h2>
 <p id="section-abstract-1">This document specifies an extension to QUIC to allow a server to request a
 migration to a new preferred address.<a href="#section-abstract-1" class="pilcrow">¶</a></p>
+</section>
+<section class="note rfcEditorRemove" id="section-note.1">
+      <h2 id="name-about-this-document">
+<a href="#name-about-this-document" class="section-name selfRef">About This Document</a>
+      </h2>
+<p id="section-note.1-1">This note is to be removed before publishing as an RFC.<a href="#section-note.1-1" class="pilcrow">¶</a></p>
+<p id="section-note.1-2">
+        The latest revision of this draft can be found at <span><a href="https://marcopolo.github.io/new-preferred-address/draft-munizaga-quic-new-preferred-address.html">https://marcopolo.github.io/new-preferred-address/draft-munizaga-quic-new-preferred-address.html</a></span>.
+        Status information for this document may be found at <span><a href="https://datatracker.ietf.org/doc/draft-munizaga-quic-new-preferred-address/">https://datatracker.ietf.org/doc/draft-munizaga-quic-new-preferred-address/</a></span>.<a href="#section-note.1-2" class="pilcrow">¶</a></p>
+<p id="section-note.1-3">
+        Discussion of this document takes place on the
+        QUIC Working Group mailing list (<span><a href="mailto:quic@ietf.org">mailto:quic@ietf.org</a></span>),
+        which is archived at <span><a href="https://mailarchive.ietf.org/arch/browse/quic/">https://mailarchive.ietf.org/arch/browse/quic/</a></span>.
+        Subscribe at <span><a href="https://www.ietf.org/mailman/listinfo/quic/">https://www.ietf.org/mailman/listinfo/quic/</a></span>.<a href="#section-note.1-3" class="pilcrow">¶</a></p>
+<p id="section-note.1-4">Source for this draft and an issue tracker can be found at
+        <span><a href="https://github.com/MarcoPolo/new-preferred-address">https://github.com/MarcoPolo/new-preferred-address</a></span>.<a href="#section-note.1-4" class="pilcrow">¶</a></p>
 </section>
 <div id="status-of-memo">
 <section id="section-boilerplate.1">
@@ -1108,7 +1123,7 @@ migration to a new preferred address.<a href="#section-abstract-1" class="pilcro
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 9 April 2026.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 10 April 2026.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1153,44 +1168,41 @@ migration to a new preferred address.<a href="#section-abstract-1" class="pilcro
             <p id="section-toc.1-1.5.1"><a href="#section-5" class="auto internal xref">5</a>.  <a href="#name-new-preferred-address-frame" class="internal xref">New Preferred Address Frame</a></p>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6">
-            <p id="section-toc.1-1.6.1"><a href="#section-6" class="auto internal xref">6</a>.  <a href="#name-changes-to-servers-preferre" class="internal xref">Changes to Server's Preferred Address from RFC 9000</a></p>
+            <p id="section-toc.1-1.6.1"><a href="#section-6" class="auto internal xref">6</a>.  <a href="#name-security-considerations" class="internal xref">Security Considerations</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6.2.1">
+                <p id="section-toc.1-1.6.2.1.1"><a href="#section-6.1" class="auto internal xref">6.1</a>.  <a href="#name-request-forgery-attacks" class="internal xref">Request Forgery Attacks</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6.2.2">
+                <p id="section-toc.1-1.6.2.2.1"><a href="#section-6.2" class="auto internal xref">6.2</a>.  <a href="#name-ddos-thundering-herd" class="internal xref">DDoS - Thundering herd</a></p>
+</li>
+            </ul>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.7">
-            <p id="section-toc.1-1.7.1"><a href="#section-7" class="auto internal xref">7</a>.  <a href="#name-security-considerations" class="internal xref">Security Considerations</a></p>
+            <p id="section-toc.1-1.7.1"><a href="#section-7" class="auto internal xref">7</a>.  <a href="#name-iana-considerations" class="internal xref">IANA Considerations</a></p>
 <ul class="compact toc ulBare ulEmpty">
 <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.7.2.1">
-                <p id="section-toc.1-1.7.2.1.1"><a href="#section-7.1" class="auto internal xref">7.1</a>.  <a href="#name-request-forgery-attacks" class="internal xref">Request Forgery Attacks</a></p>
+                <p id="section-toc.1-1.7.2.1.1"><a href="#section-7.1" class="auto internal xref">7.1</a>.  <a href="#name-quic-transport-parameter" class="internal xref">QUIC Transport Parameter</a></p>
 </li>
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.7.2.2">
-                <p id="section-toc.1-1.7.2.2.1"><a href="#section-7.2" class="auto internal xref">7.2</a>.  <a href="#name-ddos-thundering-herd" class="internal xref">DDoS - Thundering herd</a></p>
+                <p id="section-toc.1-1.7.2.2.1"><a href="#section-7.2" class="auto internal xref">7.2</a>.  <a href="#name-quic-frame-types" class="internal xref">QUIC Frame Types</a></p>
 </li>
             </ul>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8">
-            <p id="section-toc.1-1.8.1"><a href="#section-8" class="auto internal xref">8</a>.  <a href="#name-iana-considerations" class="internal xref">IANA Considerations</a></p>
-<ul class="compact toc ulBare ulEmpty">
-<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8.2.1">
-                <p id="section-toc.1-1.8.2.1.1"><a href="#section-8.1" class="auto internal xref">8.1</a>.  <a href="#name-quic-transport-parameter" class="internal xref">QUIC Transport Parameter</a></p>
-</li>
-              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8.2.2">
-                <p id="section-toc.1-1.8.2.2.1"><a href="#section-8.2" class="auto internal xref">8.2</a>.  <a href="#name-quic-frame-types" class="internal xref">QUIC Frame Types</a></p>
-</li>
-            </ul>
+            <p id="section-toc.1-1.8.1"><a href="#section-8" class="auto internal xref">8</a>.  <a href="#name-normative-references" class="internal xref">Normative References</a></p>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.9">
-            <p id="section-toc.1-1.9.1"><a href="#section-9" class="auto internal xref">9</a>.  <a href="#name-normative-references" class="internal xref">Normative References</a></p>
+            <p id="section-toc.1-1.9.1"><a href="#appendix-A" class="auto internal xref"></a><a href="#name-acknowledgments" class="internal xref">Acknowledgments</a></p>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.10">
-            <p id="section-toc.1-1.10.1"><a href="#appendix-A" class="auto internal xref"></a><a href="#name-acknowledgments" class="internal xref">Acknowledgments</a></p>
+            <p id="section-toc.1-1.10.1"><a href="#appendix-B" class="auto internal xref"></a><a href="#name-todos" class="internal xref">TODOs</a></p>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.11">
-            <p id="section-toc.1-1.11.1"><a href="#appendix-B" class="auto internal xref"></a><a href="#name-todos" class="internal xref">TODOs</a></p>
+            <p id="section-toc.1-1.11.1"><a href="#appendix-C" class="auto internal xref"></a><a href="#name-questions" class="internal xref">Questions</a></p>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.12">
-            <p id="section-toc.1-1.12.1"><a href="#appendix-C" class="auto internal xref"></a><a href="#name-questions" class="internal xref">Questions</a></p>
-</li>
-          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.13">
-            <p id="section-toc.1-1.13.1"><a href="#appendix-D" class="auto internal xref"></a><a href="#name-authors-addresses" class="internal xref">Authors' Addresses</a></p>
+            <p id="section-toc.1-1.12.1"><a href="#appendix-D" class="auto internal xref"></a><a href="#name-authors-addresses" class="internal xref">Authors' Addresses</a></p>
 </li>
         </ul>
 </nav>
@@ -1265,7 +1277,7 @@ TRANSPORT_PARAMETER_ERROR.<a href="#section-4-3" class="pilcrow">¶</a></p>
 <p id="section-5-1">A server can use an NEW_PREFERRED_ADDRESS frame to request the client to
 migrate the connection to the provided server address. Upon receiving an
 NEW_PREFERRED_ADDRESS, the client <span class="bcp14">MAY</span> initiate migration. If the
-client does migrate it <span class="bcp14">MUST</span> adhere to the client behavior defined in <span><a href="https://rfc-editor.org/rfc/rfc9000#section-9.6" class="relref">Section 9.6</a> of [<a href="#QUIC-TRANSPORT" class="cite xref">QUIC-TRANSPORT</a>]</span>, with exceptions specified in <a href="#changes" class="auto internal xref">Section 6</a>.<a href="#section-5-1" class="pilcrow">¶</a></p>
+client does migrate it <span class="bcp14">MUST</span> adhere to the client behavior defined in <span><a href="https://rfc-editor.org/rfc/rfc9000#section-9.6" class="relref">Section 9.6</a> of [<a href="#QUIC-TRANSPORT" class="cite xref">QUIC-TRANSPORT</a>]</span>.<a href="#section-5-1" class="pilcrow">¶</a></p>
 <p id="section-5-2">The NEW_PREFERRED_ADDRESS is defined as follows:<a href="#section-5-2" class="pilcrow">¶</a></p>
 <div class="alignLeft art-text artwork" id="section-5-3">
 <pre>
@@ -1309,132 +1321,117 @@ NEW_PREFERRED_ADDRESS. Likewise, the client should ensure the same to allow the
 server to probe new paths.<a href="#section-5-7" class="pilcrow">¶</a></p>
 </section>
 </div>
-<div id="changes">
-<section id="section-6">
-      <h2 id="name-changes-to-servers-preferre">
-<a href="#section-6" class="section-number selfRef">6. </a><a href="#name-changes-to-servers-preferre" class="section-name selfRef">Changes to Server's Preferred Address from RFC 9000</a>
-      </h2>
-<p id="section-6-1">If a client advertises support for this extension it should modify its
-migration behavior to a server's preferred address as follows.<a href="#section-6-1" class="pilcrow">¶</a></p>
-<p id="section-6-2">Clients <span class="bcp14">MUST</span> support migrating to a new server address mid connection.<a href="#section-6-2" class="pilcrow">¶</a></p>
-<p id="section-6-3">Clients <span class="bcp14">SHOULD</span> respond to PATH_CHALLENGE frames from the server from new paths,
-even if the client has not initiated a migration. This allows the server to
-probe viable paths before sending an NEW_PREFERRED_ADDRESS frame.<a href="#section-6-3" class="pilcrow">¶</a></p>
-</section>
-</div>
 <div id="security-considerations">
-<section id="section-7">
+<section id="section-6">
       <h2 id="name-security-considerations">
-<a href="#section-7" class="section-number selfRef">7. </a><a href="#name-security-considerations" class="section-name selfRef">Security Considerations</a>
+<a href="#section-6" class="section-number selfRef">6. </a><a href="#name-security-considerations" class="section-name selfRef">Security Considerations</a>
       </h2>
 <div id="request-forgery-attacks">
-<section id="section-7.1">
+<section id="section-6.1">
         <h3 id="name-request-forgery-attacks">
-<a href="#section-7.1" class="section-number selfRef">7.1. </a><a href="#name-request-forgery-attacks" class="section-name selfRef">Request Forgery Attacks</a>
+<a href="#section-6.1" class="section-number selfRef">6.1. </a><a href="#name-request-forgery-attacks" class="section-name selfRef">Request Forgery Attacks</a>
         </h3>
-<p id="section-7.1-1">The same considerations from <span><a href="https://rfc-editor.org/rfc/rfc9000#section-21.5" class="relref">Section 21.5</a> of [<a href="#QUIC-TRANSPORT" class="cite xref">QUIC-TRANSPORT</a>]</span> apply here as
-well.<a href="#section-7.1-1" class="pilcrow">¶</a></p>
+<p id="section-6.1-1">The same considerations from <span><a href="https://rfc-editor.org/rfc/rfc9000#section-21.5" class="relref">Section 21.5</a> of [<a href="#QUIC-TRANSPORT" class="cite xref">QUIC-TRANSPORT</a>]</span> apply here as
+well.<a href="#section-6.1-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="ddos-thundering-herd">
-<section id="section-7.2">
+<section id="section-6.2">
         <h3 id="name-ddos-thundering-herd">
-<a href="#section-7.2" class="section-number selfRef">7.2. </a><a href="#name-ddos-thundering-herd" class="section-name selfRef">DDoS - Thundering herd</a>
+<a href="#section-6.2" class="section-number selfRef">6.2. </a><a href="#name-ddos-thundering-herd" class="section-name selfRef">DDoS - Thundering herd</a>
         </h3>
-<p id="section-7.2-1">A malicious server could wait until it has received a large number of clients,
+<p id="section-6.2-1">A malicious server could wait until it has received a large number of clients,
 and request a migration from all of them at the same time to a victim endpoint.
 If the clients all migrate at the same time, they may overload or otherwise
-negatively impact the victim endpoint.<a href="#section-7.2-1" class="pilcrow">¶</a></p>
-<p id="section-7.2-2">Clients <span class="bcp14">MAY</span> defer migration until after a PATH_CHALLENGE frame is received from
-the server's new preferred address. Clients may also mitigate this by randomly
-delaying the migration.<a href="#section-7.2-2" class="pilcrow">¶</a></p>
+negatively impact the victim endpoint.<a href="#section-6.2-1" class="pilcrow">¶</a></p>
+<p id="section-6.2-2">Clients may mitigate this by randomly delaying the migration.<a href="#section-6.2-2" class="pilcrow">¶</a></p>
 </section>
 </div>
 </section>
 </div>
 <div id="iana-considerations">
-<section id="section-8">
+<section id="section-7">
       <h2 id="name-iana-considerations">
-<a href="#section-8" class="section-number selfRef">8. </a><a href="#name-iana-considerations" class="section-name selfRef">IANA Considerations</a>
+<a href="#section-7" class="section-number selfRef">7. </a><a href="#name-iana-considerations" class="section-name selfRef">IANA Considerations</a>
       </h2>
 <div id="quic-transport-parameter">
-<section id="section-8.1">
+<section id="section-7.1">
         <h3 id="name-quic-transport-parameter">
-<a href="#section-8.1" class="section-number selfRef">8.1. </a><a href="#name-quic-transport-parameter" class="section-name selfRef">QUIC Transport Parameter</a>
+<a href="#section-7.1" class="section-number selfRef">7.1. </a><a href="#name-quic-transport-parameter" class="section-name selfRef">QUIC Transport Parameter</a>
         </h3>
-<p id="section-8.1-1">This document registers the new_preferred_address transport parameter in the "QUIC
-Transport Parameters" registry established in <span><a href="https://rfc-editor.org/rfc/rfc9000#section-22.3" class="relref">Section 22.3</a> of [<a href="#QUIC-TRANSPORT" class="cite xref">QUIC-TRANSPORT</a>]</span>. The following fields are registered:<a href="#section-8.1-1" class="pilcrow">¶</a></p>
-<span class="break"></span><dl class="dlParallel" id="section-8.1-2">
-          <dt id="section-8.1-2.1">Value:</dt>
-          <dd style="margin-left: 1.5em" id="section-8.1-2.2">
-            <p id="section-8.1-2.2.1">0xff0969d85c<a href="#section-8.1-2.2.1" class="pilcrow">¶</a></p>
+<p id="section-7.1-1">This document registers the new_preferred_address transport parameter in the "QUIC
+Transport Parameters" registry established in <span><a href="https://rfc-editor.org/rfc/rfc9000#section-22.3" class="relref">Section 22.3</a> of [<a href="#QUIC-TRANSPORT" class="cite xref">QUIC-TRANSPORT</a>]</span>. The following fields are registered:<a href="#section-7.1-1" class="pilcrow">¶</a></p>
+<span class="break"></span><dl class="dlParallel" id="section-7.1-2">
+          <dt id="section-7.1-2.1">Value:</dt>
+          <dd style="margin-left: 1.5em" id="section-7.1-2.2">
+            <p id="section-7.1-2.2.1">0xff0969d85c<a href="#section-7.1-2.2.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
-<dt id="section-8.1-2.3">Parameter Name:</dt>
-          <dd style="margin-left: 1.5em" id="section-8.1-2.4">
-            <p id="section-8.1-2.4.1">new_preferred_address<a href="#section-8.1-2.4.1" class="pilcrow">¶</a></p>
+<dt id="section-7.1-2.3">Parameter Name:</dt>
+          <dd style="margin-left: 1.5em" id="section-7.1-2.4">
+            <p id="section-7.1-2.4.1">new_preferred_address<a href="#section-7.1-2.4.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
-<dt id="section-8.1-2.5">Status:</dt>
-          <dd style="margin-left: 1.5em" id="section-8.1-2.6">
-            <p id="section-8.1-2.6.1">Provisional<a href="#section-8.1-2.6.1" class="pilcrow">¶</a></p>
+<dt id="section-7.1-2.5">Status:</dt>
+          <dd style="margin-left: 1.5em" id="section-7.1-2.6">
+            <p id="section-7.1-2.6.1">Provisional<a href="#section-7.1-2.6.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
-<dt id="section-8.1-2.7">Specification:</dt>
-          <dd style="margin-left: 1.5em" id="section-8.1-2.8">
-            <p id="section-8.1-2.8.1">This document<a href="#section-8.1-2.8.1" class="pilcrow">¶</a></p>
+<dt id="section-7.1-2.7">Specification:</dt>
+          <dd style="margin-left: 1.5em" id="section-7.1-2.8">
+            <p id="section-7.1-2.8.1">This document<a href="#section-7.1-2.8.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
-<dt id="section-8.1-2.9">Change Controller:</dt>
-          <dd style="margin-left: 1.5em" id="section-8.1-2.10">
-            <p id="section-8.1-2.10.1">IETF (iesg@ietf.org)<a href="#section-8.1-2.10.1" class="pilcrow">¶</a></p>
+<dt id="section-7.1-2.9">Change Controller:</dt>
+          <dd style="margin-left: 1.5em" id="section-7.1-2.10">
+            <p id="section-7.1-2.10.1">IETF (iesg@ietf.org)<a href="#section-7.1-2.10.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
-<dt id="section-8.1-2.11">Contact:</dt>
-          <dd style="margin-left: 1.5em" id="section-8.1-2.12">
-            <p id="section-8.1-2.12.1">Marco Munizaga (marco@marcopolo.io)<a href="#section-8.1-2.12.1" class="pilcrow">¶</a></p>
+<dt id="section-7.1-2.11">Contact:</dt>
+          <dd style="margin-left: 1.5em" id="section-7.1-2.12">
+            <p id="section-7.1-2.12.1">Marco Munizaga (marco@marcopolo.io)<a href="#section-7.1-2.12.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
 </dl>
 </section>
 </div>
 <div id="quic-frame-types">
-<section id="section-8.2">
+<section id="section-7.2">
         <h3 id="name-quic-frame-types">
-<a href="#section-8.2" class="section-number selfRef">8.2. </a><a href="#name-quic-frame-types" class="section-name selfRef">QUIC Frame Types</a>
+<a href="#section-7.2" class="section-number selfRef">7.2. </a><a href="#name-quic-frame-types" class="section-name selfRef">QUIC Frame Types</a>
         </h3>
-<p id="section-8.2-1">This document registers one new value in the "QUIC Frame Types" registry
+<p id="section-7.2-1">This document registers one new value in the "QUIC Frame Types" registry
 established in <span><a href="https://rfc-editor.org/rfc/rfc9000#section-22.4" class="relref">Section 22.4</a> of [<a href="#QUIC-TRANSPORT" class="cite xref">QUIC-TRANSPORT</a>]</span>. The following fields are
-registered:<a href="#section-8.2-1" class="pilcrow">¶</a></p>
-<span class="break"></span><dl class="dlParallel" id="section-8.2-2">
-          <dt id="section-8.2-2.1">Value:</dt>
-          <dd style="margin-left: 1.5em" id="section-8.2-2.2">
-            <p id="section-8.2-2.2.1">0x1d5845e2<a href="#section-8.2-2.2.1" class="pilcrow">¶</a></p>
+registered:<a href="#section-7.2-1" class="pilcrow">¶</a></p>
+<span class="break"></span><dl class="dlParallel" id="section-7.2-2">
+          <dt id="section-7.2-2.1">Value:</dt>
+          <dd style="margin-left: 1.5em" id="section-7.2-2.2">
+            <p id="section-7.2-2.2.1">0x1d5845e2<a href="#section-7.2-2.2.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
-<dt id="section-8.2-2.3">Frame Type Name:</dt>
-          <dd style="margin-left: 1.5em" id="section-8.2-2.4">
-            <p id="section-8.2-2.4.1">NEW_PREFERRED_ADDRESS<a href="#section-8.2-2.4.1" class="pilcrow">¶</a></p>
+<dt id="section-7.2-2.3">Frame Type Name:</dt>
+          <dd style="margin-left: 1.5em" id="section-7.2-2.4">
+            <p id="section-7.2-2.4.1">NEW_PREFERRED_ADDRESS<a href="#section-7.2-2.4.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
-<dt id="section-8.2-2.5">Status:</dt>
-          <dd style="margin-left: 1.5em" id="section-8.2-2.6">
-            <p id="section-8.2-2.6.1">Provisional<a href="#section-8.2-2.6.1" class="pilcrow">¶</a></p>
+<dt id="section-7.2-2.5">Status:</dt>
+          <dd style="margin-left: 1.5em" id="section-7.2-2.6">
+            <p id="section-7.2-2.6.1">Provisional<a href="#section-7.2-2.6.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
-<dt id="section-8.2-2.7">Specification:</dt>
-          <dd style="margin-left: 1.5em" id="section-8.2-2.8">
-            <p id="section-8.2-2.8.1">This document<a href="#section-8.2-2.8.1" class="pilcrow">¶</a></p>
+<dt id="section-7.2-2.7">Specification:</dt>
+          <dd style="margin-left: 1.5em" id="section-7.2-2.8">
+            <p id="section-7.2-2.8.1">This document<a href="#section-7.2-2.8.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
-<dt id="section-8.2-2.9">Change Controller:</dt>
-          <dd style="margin-left: 1.5em" id="section-8.2-2.10">
-            <p id="section-8.2-2.10.1">IETF (iesg@ietf.org)<a href="#section-8.2-2.10.1" class="pilcrow">¶</a></p>
+<dt id="section-7.2-2.9">Change Controller:</dt>
+          <dd style="margin-left: 1.5em" id="section-7.2-2.10">
+            <p id="section-7.2-2.10.1">IETF (iesg@ietf.org)<a href="#section-7.2-2.10.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
-<dt id="section-8.2-2.11">Contact:</dt>
-          <dd style="margin-left: 1.5em" id="section-8.2-2.12">
-            <p id="section-8.2-2.12.1">Marco Munizaga (marco@marcopolo.io)<a href="#section-8.2-2.12.1" class="pilcrow">¶</a></p>
+<dt id="section-7.2-2.11">Contact:</dt>
+          <dd style="margin-left: 1.5em" id="section-7.2-2.12">
+            <p id="section-7.2-2.12.1">Marco Munizaga (marco@marcopolo.io)<a href="#section-7.2-2.12.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
 </dl>
@@ -1443,9 +1440,9 @@ registered:<a href="#section-8.2-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="sec-normative-references">
-<section id="section-9">
+<section id="section-8">
       <h2 id="name-normative-references">
-<a href="#section-9" class="section-number selfRef">9. </a><a href="#name-normative-references" class="section-name selfRef">Normative References</a>
+<a href="#section-8" class="section-number selfRef">8. </a><a href="#name-normative-references" class="section-name selfRef">Normative References</a>
       </h2>
 <dl class="references">
 <dt id="QUIC-TRANSPORT">[QUIC-TRANSPORT]</dt>
@@ -1485,16 +1482,12 @@ registered:<a href="#section-8.2-1" class="pilcrow">¶</a></p>
       </h2>
 <ul class="normal">
 <li class="normal" id="appendix-C-1.1">
-          <p id="appendix-C-1.1.1">Any new security considerations from allowing a server to send path challenge
-frames?<a href="#appendix-C-1.1.1" class="pilcrow">¶</a></p>
+          <p id="appendix-C-1.1.1">Any new security conserations from allowing a dynamically chosen preferred
+address?<a href="#appendix-C-1.1.1" class="pilcrow">¶</a></p>
 </li>
         <li class="normal" id="appendix-C-1.2">
-          <p id="appendix-C-1.2.1">Any new security conserations from allowing a dynamically chosen preferred
+          <p id="appendix-C-1.2.1">Any new security conserations from allowing a deferred chosen preferred
 address?<a href="#appendix-C-1.2.1" class="pilcrow">¶</a></p>
-</li>
-        <li class="normal" id="appendix-C-1.3">
-          <p id="appendix-C-1.3.1">Any new security conserations from allowing a deferred chosen preferred
-address?<a href="#appendix-C-1.3.1" class="pilcrow">¶</a></p>
 </li>
       </ul>
 </section>
