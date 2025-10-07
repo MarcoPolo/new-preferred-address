@@ -1,18 +1,23 @@
 ---
 title: "QUIC New Server Preferred Address"
 category: std
-
 docname: draft-munizaga-quic-new-preferred-address-latest
-submissiontype: IETF
-number:
-date:
-consensus: true
-v: 3
-area: Transport
-workgroup: QUIC
-keyword:
- - Connection Migration
- - Server's Preferred Address
+
+ipr: trust200902
+area: "Transport"
+workgroup: "QUIC"
+keyword: Internet-Draft
+venue:
+  group: "QUIC"
+  type: "Working Group"
+  mail: "quic@ietf.org"
+  arch: "https://mailarchive.ietf.org/arch/browse/quic/"
+  github: "MarcoPolo/new-preferred-address"
+  latest: "https://marcopolo.github.io/new-preferred-address/draft-munizaga-quic-new-preferred-address.html"
+
+stand_alone: yes
+smart_quotes: no
+pi: [toc, sortrefs, symrefs]
 
 author:
  -
