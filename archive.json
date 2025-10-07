@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-10-05T00:04:32.483495+00:00",
+  "timestamp": "2025-10-07T00:04:20.145173+00:00",
   "repo": "MarcoPolo/new-preferred-address",
   "labels": [
     {
@@ -187,6 +187,62 @@
       "mergedBy": "MarcoPolo",
       "mergeCommit": {
         "oid": "f50ecc399af89e4befd31bb910fc94e1251ce6e1"
+      },
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 6,
+      "id": "PR_kwDOPYOJds6sUwku",
+      "title": "add Marten as co-author",
+      "url": "https://github.com/MarcoPolo/new-preferred-address/pull/6",
+      "state": "MERGED",
+      "author": "marten-seemann",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2025-10-06T17:09:59Z",
+      "updatedAt": "2025-10-06T17:37:22Z",
+      "baseRepository": "MarcoPolo/new-preferred-address",
+      "baseRefName": "main",
+      "baseRefOid": "737c077c1d8ff2f254d5b6becca6bf4ddfbb932c",
+      "headRepository": "MarcoPolo/new-preferred-address",
+      "headRefName": "add-marten",
+      "headRefOid": "b2b07f0c14003c4172c5d857f8b2fce370436405",
+      "closedAt": "2025-10-06T17:37:22Z",
+      "mergedAt": "2025-10-06T17:37:22Z",
+      "mergedBy": "MarcoPolo",
+      "mergeCommit": {
+        "oid": "31745b5aa780962a21f48aef2c6bfcdd303dab6a"
+      },
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 7,
+      "id": "PR_kwDOPYOJds6sU0Z3",
+      "title": "remove draft instructions",
+      "url": "https://github.com/MarcoPolo/new-preferred-address/pull/7",
+      "state": "MERGED",
+      "author": "marten-seemann",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "I believe this won't change the resulting document.",
+      "createdAt": "2025-10-06T17:14:30Z",
+      "updatedAt": "2025-10-06T17:37:22Z",
+      "baseRepository": "MarcoPolo/new-preferred-address",
+      "baseRefName": "main",
+      "baseRefOid": "737c077c1d8ff2f254d5b6becca6bf4ddfbb932c",
+      "headRepository": "MarcoPolo/new-preferred-address",
+      "headRefName": "remove-draft-instructions",
+      "headRefOid": "4601de84a677d7401cc2051f356b5c93f777df35",
+      "closedAt": "2025-10-06T17:37:22Z",
+      "mergedAt": "2025-10-06T17:37:22Z",
+      "mergedBy": "MarcoPolo",
+      "mergeCommit": {
+        "oid": "31745b5aa780962a21f48aef2c6bfcdd303dab6a"
       },
       "comments": [],
       "reviews": []
