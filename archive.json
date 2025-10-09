@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-10-07T00:04:20.145173+00:00",
+  "timestamp": "2025-10-09T00:04:10.788129+00:00",
   "repo": "MarcoPolo/new-preferred-address",
   "labels": [
     {
@@ -49,7 +49,24 @@
       "color": "ffffff"
     }
   ],
-  "issues": [],
+  "issues": [
+    {
+      "number": 10,
+      "id": "I_kwDOPYOJds7QA_BC",
+      "title": "document interaction with `disable_active_migration`, if any",
+      "url": "https://github.com/MarcoPolo/new-preferred-address/issues/10",
+      "state": "OPEN",
+      "author": "marten-seemann",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2025-10-07T04:40:33Z",
+      "updatedAt": "2025-10-07T04:40:33Z",
+      "closedAt": null,
+      "comments": []
+    }
+  ],
   "pulls": [
     {
       "number": 1,
@@ -243,6 +260,90 @@
       "mergedBy": "MarcoPolo",
       "mergeCommit": {
         "oid": "31745b5aa780962a21f48aef2c6bfcdd303dab6a"
+      },
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 8,
+      "id": "PR_kwDOPYOJds6saZiv",
+      "title": "fix document metadata",
+      "url": "https://github.com/MarcoPolo/new-preferred-address/pull/8",
+      "state": "MERGED",
+      "author": "marten-seemann",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "I believe this should have been set the first time the GitHub Actions workflow was run, but I suspect there was some kind of permission issue.\r\n\r\nWith this metadata, the draft now correctly links back to this GitHub repo, making it easier for people to open issues and PRs.",
+      "createdAt": "2025-10-07T04:35:31Z",
+      "updatedAt": "2025-10-07T16:10:46Z",
+      "baseRepository": "MarcoPolo/new-preferred-address",
+      "baseRefName": "main",
+      "baseRefOid": "31745b5aa780962a21f48aef2c6bfcdd303dab6a",
+      "headRepository": "MarcoPolo/new-preferred-address",
+      "headRefName": "document-metadata",
+      "headRefOid": "f037c5a392f16214208535cee18cfb12bcad0da4",
+      "closedAt": "2025-10-07T16:10:46Z",
+      "mergedAt": "2025-10-07T16:10:46Z",
+      "mergedBy": "MarcoPolo",
+      "mergeCommit": {
+        "oid": "eaf2a27ca165d4df918be369d3d8459a66f15e93"
+      },
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 9,
+      "id": "PR_kwDOPYOJds6saaNt",
+      "title": "set up standard README",
+      "url": "https://github.com/MarcoPolo/new-preferred-address/pull/9",
+      "state": "MERGED",
+      "author": "marten-seemann",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "I believe this should also have been done by the first run of the GHA workflow.",
+      "createdAt": "2025-10-07T04:37:57Z",
+      "updatedAt": "2025-10-07T16:10:46Z",
+      "baseRepository": "MarcoPolo/new-preferred-address",
+      "baseRefName": "main",
+      "baseRefOid": "31745b5aa780962a21f48aef2c6bfcdd303dab6a",
+      "headRepository": "MarcoPolo/new-preferred-address",
+      "headRefName": "readme",
+      "headRefOid": "1d219691ece2451fdc17ab99c5c32cc942e50ea1",
+      "closedAt": "2025-10-07T16:10:46Z",
+      "mergedAt": "2025-10-07T16:10:46Z",
+      "mergedBy": "MarcoPolo",
+      "mergeCommit": {
+        "oid": "eaf2a27ca165d4df918be369d3d8459a66f15e93"
+      },
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 11,
+      "id": "PR_kwDOPYOJds6saciq",
+      "title": "remove suggestion that the server probes the path first",
+      "url": "https://github.com/MarcoPolo/new-preferred-address/pull/11",
+      "state": "MERGED",
+      "author": "marten-seemann",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Server-initiated probes would be dropped by a NAT, so the only thing a server can possibly learn from initiating path probing is \"path works\" or \"path might work\", but never \"path doesn't work\".",
+      "createdAt": "2025-10-07T04:45:02Z",
+      "updatedAt": "2025-10-07T16:10:46Z",
+      "baseRepository": "MarcoPolo/new-preferred-address",
+      "baseRefName": "main",
+      "baseRefOid": "31745b5aa780962a21f48aef2c6bfcdd303dab6a",
+      "headRepository": "MarcoPolo/new-preferred-address",
+      "headRefName": "server-doesnt-probe",
+      "headRefOid": "d5f5b483f07b64a43c11ea3145e9831f317410ab",
+      "closedAt": "2025-10-07T16:10:46Z",
+      "mergedAt": "2025-10-07T16:10:46Z",
+      "mergedBy": "MarcoPolo",
+      "mergeCommit": {
+        "oid": "eaf2a27ca165d4df918be369d3d8459a66f15e93"
       },
       "comments": [],
       "reviews": []
